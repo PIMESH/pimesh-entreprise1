@@ -1,0 +1,14 @@
+{
+    "enterprise": {
+        "name": "PiMesh Enterprise",
+        "agents": 6500
+    },
+    "pi_network": {
+        "wallet": "GB4QOLEVD3FBPWXTHXBSOMED7DVSVTAPN5CSM4WPZS4NUUIFHMDVNKIR"
+    },
+    "economy": {
+        "gcv": 314159,
+        "apr": 5.2,
+        "credit_price": 0.01
+    }
+}

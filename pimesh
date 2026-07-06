@@ -1,0 +1,31 @@
+#!/bin/bash
+# ============================================================
+# PIMESH ENTERPRISE - COMMANDE PRINCIPALE
+# ============================================================
+
+case $1 in
+    start)
+        echo "🏢 Démarrage de PiMesh Enterprise..."
+        cd ~/pimesh_enterprise
+        python3 core/orchestrator/enterprise.py &
+        ;;
+    stop)
+        echo "🛑 Arrêt de PiMesh Enterprise..."
+        pkill -f "enterprise.py"
+        ;;
+    status)
+        echo "📊 Statut de PiMesh Enterprise..."
+        pgrep -f "enterprise.py" && echo "✅ Entreprise active" || echo "❌ Entreprise inactive"
+        ;;
+    balance)
+        echo "💰 Solde du wallet :"
+        curl -s "https://api.mainnet.minepi.com/accounts/GCEAQECGBDT6GHEDMQDUQJ3QM2PCKO3Z2RM44AE7OQKSQDLYG6K5ORCO" | python3 -c "import sys, json; data=json.load(sys.stdin); balance = sum(float(b['balance']) for b in data.get('balances', []) if b.get('asset_type') == 'native'); print(f'{balance:.2f} Pi')"
+        ;;
+    *)
+        echo "📋 PiMesh Enterprise - Commandes:"
+        echo "  start    - Démarrer l'entreprise"
+        echo "  stop     - Arrêter l'entreprise"
+        echo "  status   - Voir le statut"
+        echo "  balance  - Voir le solde"
+        ;;
+esac
